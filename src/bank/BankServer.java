@@ -56,7 +56,9 @@ public class BankServer implements Runnable {
 			} finally {
 	            // Clean up.
 	            try {
-                    in.close();
+                    if (in != null) {
+                        in.close();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -78,7 +80,7 @@ public class BankServer implements Runnable {
 	}
 
 	/**
-	 * Creates a new server on port 1234 and listens for connetions.
+	 * Creates a new server on port 1234 and listens for connections.
 	 * @param args
 	 * @throws InterruptedException
 	 */
@@ -98,7 +100,7 @@ public class BankServer implements Runnable {
 			System.exit(-1);
 		} finally {
     		serverThread.start();
-    		Thread.sleep(1000);  // wait 10s
+    		Thread.sleep(10000);  // wait 10s
     		server.stop();
     		serverThread.join();
 		}
